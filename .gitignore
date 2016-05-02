@@ -1,12 +1,20 @@
+#directories created by mysql
+mysql_media-shr
+mysql_media-conf.d
+mysql_media-datadir
+
+# directories fetch from github
+mediaserver-module
+
+# artifact
+srv/releases/mediaserver-ear.ear
+srv/deployments/mediaserver-ear.ear.deployed
+srv/deployments/mediaserver-ear.ear.failed
+srv/deployments/mediaserver-ear.ear
+
+*~
 *.class
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
 # Package Files #
-*.jar
 *.war
 *.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
