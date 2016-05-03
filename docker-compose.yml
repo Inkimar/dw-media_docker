@@ -20,6 +20,7 @@ fs_as:
     - ./srv/releases:/opt/jboss/wildfly/releases
     - ./srv/logs:/opt/jboss/wildfly/standalone/logs
     - ./srv/deployments:/opt/jboss/wildfly/standalone/deployments
+    - ./srv/media:/opt/data/media
 
 db.media:
   image: mysql:5.5
