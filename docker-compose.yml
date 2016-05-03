@@ -47,7 +47,7 @@ app:
 web:
   image: nginx
   environment:
-   - VIRTUAL_HOST=beta-media.dina-web.net
+   - VIRTUAL_HOST=api.nrm.se
    - VIRTUAL_PORT=443
    - VIRTUAL_PROTO=https
    - CERT_NAME=shared
