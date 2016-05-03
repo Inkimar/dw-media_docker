@@ -1,4 +1,5 @@
 #directories created by mysql
+mysql_media-autoload/media.dump.sql
 mysql_media-shr
 mysql_media-conf.d
 mysql_media-datadir
