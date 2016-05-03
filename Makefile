@@ -1,25 +1,16 @@
-all: clone build-src build-db build-app
-#all: build-src build-db build-app up-web
+VERSION = 0.4
+all: release up
 
-clone:
-	@echo "Pulling latest sources from the DINA mediaserver-module"
-	git clone https://github.com/DINA-Web/mediaserver-module.git
+release:
+	@echo "Pulling the DINA mediaserver-module release v0.4"
+	wget https://github.com/DINA-Web/mediaserver-module/releases/download/v0.4/mediaserver-ear.ear -O srv/deployments/mediaserver.ear
+	wget https://github.com/DINA-Web/mediaserver-module/releases/download/v0.4/media-dump.sql -O mysql_media-autoload/media-dump.sql
 
-build-src:
-	cd ./mediaserver-module;mvn clean install
-	cp ./mediaserver-module/ear/target/mediaserver-ear.ear srv/releases
-	cp ./mediaserver-module/ear/target/mediaserver-ear.ear srv/deployments
-
-build-db:
-	docker-compose up -d db.media
-	sleep 10
-	cd ./mediaserver-module/db;mvn clean install
+up:
+	docker-compose up
 
 build-app:
 	docker-compose build --no-cache app
-
-up-web:
-	docker-compose up -d web
 
 demo:
 	./mediaserver-module/docs/example-files/aka.sh
@@ -32,8 +23,8 @@ stop:
 rm:
 	docker-compose rm -vf
 
-rm-repo:
-	rm -rf mediaserver-module
-	rm srv/releases/mediaserver-ear.ear
-	rm srv/deployments/mediaserver-ear.ear
+rm-releseas:
+	rm srv/deployments/mediaserver.ear
 	rm srv/deployments/mediaserver-ear.ear.deployed
+	rm srv/deployments/mediaserver-ear.ear.failed
+	rm mysql_media-autoload/*.sql
