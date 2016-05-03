@@ -17,4 +17,4 @@ the target **'all'** <br>
 run this to check if your <br>
 check for the uuid:s in the database 'media' and table 'MEDIA' <br>
 fetch the image by <br>
-http://localhost:<port>/MediaServerResteasy/media/v1/<uuid>?format=image/jpeg
+http://localhost:\<port\>/MediaServerResteasy/media/v1/\<uuid\>?format=image/jpeg
