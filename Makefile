@@ -1,4 +1,4 @@
-all: clone build-src build-db build-app up-web
+all: clone build-src build-db build-app
 #all: build-src build-db build-app up-web
 
 clone:
