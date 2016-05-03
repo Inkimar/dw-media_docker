@@ -11,6 +11,9 @@ srv/releases/mediaserver-ear.ear
 srv/deployments/mediaserver-ear.ear.deployed
 srv/deployments/mediaserver-ear.ear.failed
 srv/deployments/mediaserver-ear.ear
+srv/deployments/mediaserver.ear
+srv/deployments/mediaserver.ear.deployed
+srv/deployments/mediaserver.ear.failed
 
 *~
 *.class
