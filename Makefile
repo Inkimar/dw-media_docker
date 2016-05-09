@@ -1,5 +1,6 @@
 VERSION = 0.4
 all: release build-app up-db up-app
+#all: build-app up-db up-app
 
 release:
 	@echo "Pulling the DINA mediaserver-module release v0.4"
@@ -7,7 +8,7 @@ release:
 	wget https://github.com/DINA-Web/mediaserver-module/releases/download/v0.4/media.dump.sql -O mysql_media-autoload/media.dump.sql
 
 up-db:
-	docker-compose up -d db.media
+	docker-compose up db.media 
 
 build-app:
 	docker-compose build --no-cache app
@@ -15,8 +16,8 @@ build-app:
 up-app:
 	docker-compose up -d app
 
-demo:
-	./mediaserver-module/docs/example-files/aka.sh
+test:
+	testing/post-3-images.sh
 
 # cleaning
 clean: stop rm
