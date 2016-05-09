@@ -18,7 +18,7 @@ fs_as:
   image: tianon/true
   volumes:
     - ./srv/releases:/opt/jboss/wildfly/releases
-    - ./srv/logs:/opt/jboss/wildfly/standalone/log
+    - ./srv/log:/opt/jboss/wildfly/standalone/log
     - ./srv/deployments:/opt/jboss/wildfly/standalone/deployments
     - ./srv/media:/opt/data/media
 
