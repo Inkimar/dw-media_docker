@@ -8,14 +8,19 @@ http://localhost:18080/MediaServerResteasy/
 ## Makefile
 the target **'all'** <br>
 
-1. clones the media_module project
-2. compiles the project
-3. runs the liquibase-project ( creates the database schema )
-4. builds the Wildfly-server
-5. starts the 'reverse-proxy nginx
+1. 'release', fetches the artifact (ear-file) and the database dump.
+2. 'build-app', builds the application server ('app').
+3. 'up-db', starts the database-engine (+ creates the schema)
+4. 'up-app', start the application server (wildfly)
+
 
 ### 'demo'-target inserts 3 images using the api 
-run this to check if your <br>
-check for the uuid:s in the database 'media' and table 'MEDIA' <br>
-fetch the image by <br>
-http://localhost:\<port\>/MediaServerResteasy/media/v1/\<uuid\>?format=image/jpeg
+run the script 'testing/post-3-images.sh' to check if the mediaserver is running<br>
+check for the uuid:s in the table 'media.MEDIA' <br>
+see the script 'testing/getExamples.sh' on how to fetch metadata- and the media-file<br>
+
+### How to configure
+the table media.ADMIN_CONFIG holds some vital key/values <br>
+if you would like to change the values , update the 'mysql_media-autoload/update-admin_config.sql'-file <br>
+
+
