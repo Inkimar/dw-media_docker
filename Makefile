@@ -17,7 +17,7 @@ up-app:
 	docker-compose up -d app
 
 test:
-	testing/post-3-images.sh
+	cd testing;./post-3-images.sh
 
 # cleaning
 clean: stop rm
