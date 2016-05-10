@@ -1,20 +1,21 @@
 # dw-media_docker
-Dockerized media_module<br>
-right now exposing the ports to MySQL-server (port 13306) and to the Wildfly-server (port 18080 and port 19990) <br>
-change that by editing the docker-compose.yml-file <br>
-http://localhost:18080/MediaServerResteasy/
 
+Dockerized media server module
 
-## Makefile
-the target **'all'** <br>
-1. clones the media_module project
-2. compiles the project
-3. runs the liquibase-project ( creates the database schema )
-4. builds the Wildfly-server
-5. starts the 'reverse-proxy nginx
+## Using the Makefile
 
-'demo'-target insesrts 3 images through the api <br>
-run this to check if your <br>
-check for the uuid:s in the database 'media' and table 'MEDIA' <br>
-fetch the image by <br>
-http://localhost:\<port\>/MediaServerResteasy/media/v1/\<uuid\>?format=image/jpeg
+`make` starts the services from scratch
+`make clean` stops and removes services and data
+
+For other available actions, please see the Makefile
+
+## Using the API
+
+Assuming hostname api.nrm.se (if running locally, edit /etc/hosts and add this name first!):
+
+GET against http://api.nrm.se/MediaServerResteasy/media/v1/`uuid`?format=image/jpeg will return an image
+
+Documentation can be found at: <https://github.com/DINA-Web/mediaserver-module>
+
+Full API docs can be found at: <http://docs.media8.apiary.io>
+

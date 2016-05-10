@@ -1,28 +1,16 @@
-fs_db.media:
+fs:
   image: tianon/true
   volumes:
-    - ./mysql_media-datadir:/var/lib/mysql:z
-    - ./mysql_media-shr:/shr:z
-    - ./mysql_media-autoload:/docker-entrypoint-initdb.d:ro
-    - ./mysql_media-conf.d:/etc/mysql/conf.d:z
-
-fs_ws:
-  image: tianon/true
-  volumes:
-    - ./nginx-html:/usr/share/nginx/html:z
-    - ./nginx-conf:/etc/nginx/conf.d:z
-    - ./nginx-certs:/etc/nginx/ssl:z
-    - ./nginx-logs:/etc/nginx/logs:z
-
-fs_as:
-  image: tianon/true
-  volumes:
+    - ./mysql-datadir:/var/lib/mysql
+    - ./mysql-shr:/shr
+    - ./mysql-autoload:/docker-entrypoint-initdb.d:ro
+    - ./mysql-conf.d:/etc/mysql/conf.d
     - ./srv/releases:/opt/jboss/wildfly/releases
     - ./srv/logs:/opt/jboss/wildfly/standalone/logs
     - ./srv/deployments:/opt/jboss/wildfly/standalone/deployments
     - ./srv/media:/opt/data/media
 
-db.media:
+db:
   image: mysql:5.5
   environment:
     - TZ=Europe/Stockholm
@@ -30,29 +18,24 @@ db.media:
     - MYSQL_DATABASE=media
     - MYSQL_USER=mediaserver
     - MYSQL_PASSWORD=mediaserver
-  ports:
-   - "13306:3306"
   volumes_from:
-    - fs_db.media
+    - fs
 
 app:
-  build: ./wildfly-custom
-  ports:
-   - "18080:8080"
-   - "19990:9990"
-  volumes_from:
-    - fs_as
-  links:
-    - db.media:dbmedia
-
-web:
-  image: nginx
+  build: wildfly-custom
   environment:
    - VIRTUAL_HOST=api.nrm.se
-   - VIRTUAL_PORT=443
-   - VIRTUAL_PROTO=https
-   - CERT_NAME=shared
   volumes_from:
-    - fs_ws
+    - fs
+  links:
+    - db
+
+proxy:
+  image: jwilder/nginx-proxy
+  ports:
+    - "80:80"
+    - "443:443"
   links:
     - app
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
