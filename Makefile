@@ -20,6 +20,9 @@ build:
 up: db
 	docker-compose up -d
 
+deploy :
+	cp srv/releases/mediaserver.ear srv/deployments/
+
 demo:
 	@echo "Test to upload images to server using curl ( remember to add 'api.nrm.se' to /etc/hosts)"
 	cd testing; ./post-3-images.sh
