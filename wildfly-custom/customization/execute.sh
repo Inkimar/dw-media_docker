@@ -20,6 +20,7 @@ echo "=> Starting WildFly server"
 $JBOSS_HOME/bin/$JBOSS_MODE.sh -c $JBOSS_CONFIG > /dev/null &
 
 echo "=> Waiting for the server to boot"
+sleep 10
 wait_for_server
 
 echo "=> Executing the commands"
