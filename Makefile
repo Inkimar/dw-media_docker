@@ -1,34 +1,36 @@
-VERSION = 0.4
-all: release build-app up-db up-app
-#all: build-app up-db up-app
+BASE = https://github.com/DINA-Web/mediaserver-module/releases/download
+VERSION = v0.4
 
-release:
-	@echo "Pulling the DINA mediaserver-module release v0.4"
-	wget https://github.com/DINA-Web/mediaserver-module/releases/download/v0.4/mediaserver-ear.ear -O srv/deployments/mediaserver.ear
-	wget https://github.com/DINA-Web/mediaserver-module/releases/download/v0.4/media.dump.sql -O mysql_media-autoload/media.dump.sql
+all: init build db up
+# all: init db build up
 
-up-db:
-	docker-compose up db.media 
+init:
+	@echo "Pulling the DINA mediaserver-module release"
+	wget $(BASE)/$(VERSION)/mediaserver-ear.ear -O srv/deployments/mediaserver.ear
+	wget $(BASE)/$(VERSION)/media.dump.sql -O mysql-autoload/media.dump.sql
 
-build-app:
-	docker-compose build --no-cache app
+db:
+	docker-compose up -d db.media
+	@echo "Waiting for db to start"
+	sleep 10
 
-up-app:
-	docker-compose up -d app
+build:
+	docker-compose build
 
-test:
-	cd testing;./post-3-images.sh
+up: db
+	docker-compose up -d
 
-# cleaning
+demo:
+	@echo "Test to upload images to server using curl ( remember to add 'api.nrm.se' to /etc/hosts)"
+	cd testing; ./post-3-images.sh
+
 clean: stop rm
 
 stop:
 	docker-compose stop
 rm:
 	docker-compose rm -vf
-
-rm-releseas:
-	rm srv/deployments/mediaserver.ear
-	rm srv/deployments/mediaserver.ear.deployed
-	rm srv/deployments/mediaserver.ear.failed
-	rm mysql_media-autoload/media.dump.sql
+	rm -f srv/deployments/mediaserver.ear
+	rm -f srv/deployments/mediaserver.ear.deployed
+	rm -f srv/deployments/mediaserver.ear.failed
+	rm -f mysql-autoload/media.dump.sql
