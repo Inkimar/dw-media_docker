@@ -1,12 +1,12 @@
 BASE = https://github.com/DINA-Web/mediaserver-module/releases/download
 VERSION = v0.4
 
-all: init build db up
-# all: init db build up
+#all: init build db up
+ all: init db build up
 
 init:
 	@echo "Pulling the DINA mediaserver-module release"
-	wget $(BASE)/$(VERSION)/mediaserver-ear.ear -O srv/deployments/mediaserver.ear
+	wget $(BASE)/$(VERSION)/mediaserver-ear.ear -O srv/releases/mediaserver.ear
 	wget $(BASE)/$(VERSION)/media.dump.sql -O mysql-autoload/media.dump.sql
 
 db:
