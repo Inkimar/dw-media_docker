@@ -1,8 +1,9 @@
 #directories created by mysql
-mysql_media-autoload/media.dump.sql
-mysql_media-shr
-mysql_media-conf.d
-mysql_media-datadir
+mysql-autoload/media.dump.sql
+mysql-datadir
+mysql-shr
+mysql-conf.d
+mysql-datadir
 
 # artifact
 srv/releases/mediaserver-ear.ear
@@ -12,7 +13,7 @@ srv/deployments/mediaserver-ear.ear
 srv/deployments/mediaserver.ear
 srv/deployments/mediaserver.ear.deployed
 srv/deployments/mediaserver.ear.failed
-srv/logs/server.log
+srv/log/server.log
 
 *~
 *.class
