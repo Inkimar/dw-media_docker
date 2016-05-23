@@ -8,7 +8,7 @@ NB 2: For testing , 2 files that post images to the server
 2. target **'demo-https'** that starts ./testing/post-3-images-http-style.sh ( posts 3 images )
 
 *if you have not set up 'api.nrm.se' then you can replace 'api.nrm.se' with 'localhost'* <br>
-The response from above posting contains the key 'mediaURL' which contains the URL to the posted image, see [below](/Using the API/) <br>
+The response from above posting contains the key 'mediaURL' which contains the URL to the posted image, see [below](/using-the-api/) <br>
  
 ## Using the Makefile
 
