@@ -18,7 +18,7 @@ The response from above posting contains the key 'mediaURL' which contains the U
 
 ###Directories
 
-1. './srv/deployments/', check here to see if the artifact was deployed or not ( if successful the 'mediaserver.ear.deployed' is displayed )
+1. './srv/deployments/', check here to see if the artifact was deployed or not ( if successful the file 'mediaserver.ear.deployed' is displayed )
 2. './srv/log/', contains wildfly's 'server.log(s)'
 3. './srv/media/', mediafiles are stored here
 4. './srv/releases/', the artifact (ear-file) is stored here
