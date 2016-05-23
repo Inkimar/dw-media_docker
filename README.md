@@ -1,11 +1,14 @@
 # dw-media_docker
 
-Dockerized media server module
+Dockerized media server module <br>
+Relies on that there is a proxy [proxy](https://github.com/DINA-Web/dw-proxy) <br>
+NB 1: Is set up with 'api.nrm.se', configured in the 'docker-compose.yml' and in the 'mysql-autoload/update-admin_config.sql'<br>
+NB 2: The artifact 'ear'-file is fetched and placed in in 'releases'-dir, to deploy - copy to the'deployments'-dir <br>
 
 ## Using the Makefile
 
 `make` starts the services from scratch ( fetches the artifacts as well ) <br>
-the artifact 'ear'-file is now in 'releases', you have to put it in 'deployments' <br>
+
 `make clean` stops and removes services and data<br>
 
 For other available actions, please see the Makefile
