@@ -2,7 +2,7 @@ BASE = https://github.com/DINA-Web/mediaserver-module/releases/download
 VERSION = v0.4
 
 #all: init build db up
- all: init db build up
+ all: init db build up deploy
 
 init:
 	@echo "Pulling the DINA mediaserver-module release"
@@ -23,9 +23,13 @@ up: db
 deploy :
 	cp srv/releases/mediaserver.ear srv/deployments/
 
-demo:
-	@echo "Test to upload images to server using curl ( remember to add 'api.nrm.se' to /etc/hosts)"
-	cd testing; ./post-3-images.sh
+demo-http:
+	@echo "Test to upload images to server using curl over HTTP ( remember to add 'api.nrm.se' to /etc/hosts)"
+	cd testing; ./post-3-images-http-style.sh
+
+demo-https:
+	@echo "Test to upload images to server using curl over HTTPS ( remember to add 'api.nrm.se' to /etc/hosts)"
+	cd testing; ./post-3-images-https-style.sh
 
 clean: stop rm
 
