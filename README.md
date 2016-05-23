@@ -4,10 +4,11 @@ Dockerized media server module <br>
 NB 1: Is set up with 'api.nrm.se', configured in the 'docker-compose.yml' and in the 'mysql-autoload/update-admin_config.sql'<br>
 NB 2: For testing , 2 files that post images to the server
 
-1. target 'demo-https' that starts ./testing/post-3-images-https-style.sh
-2. target 'demo-https' that starts ./testing/post-3-images-http-style.sh
+1. target **'demo-https'** that starts ./testing/post-3-images-https-style.sh ( posts 3 images )
+2. target **'demo-https'** that starts ./testing/post-3-images-http-style.sh ( posts 3 images )
 
-*if you have not set up 'api.nrm.se' then you can replace 'api.nrm.se' with 'localhost'*
+*if you have not set up 'api.nrm.se' then you can replace 'api.nrm.se' with 'localhost'* <br>
+The response from above posting contains the key 'mediaURL' which contains the URL to the posted image <br>
  
 ## Using the Makefile
 
