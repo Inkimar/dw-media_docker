@@ -1,15 +1,24 @@
 # dw-media_docker
 
 Dockerized media server module <br>
-Relies on that there is a proxy [proxy](https://github.com/DINA-Web/dw-proxy) <br>
 NB 1: Is set up with 'api.nrm.se', configured in the 'docker-compose.yml' and in the 'mysql-autoload/update-admin_config.sql'<br>
-NB 2: The artifact 'ear'-file is fetched and placed in in 'releases'-dir, to deploy - copy to the'deployments'-dir <br>
-
+NB 2: For testing , 2 files that post images to the server
+1. target 'demo-https' that starts ./testing/post-3-images-https-style.sh
+2. target 'demo-https' that starts ./testing/post-3-images-http-style.sh
+*if you have not set up 'api.nrm.se' then you can replace 'api.nrm.se' with 'localhost'*
+ 
 ## Using the Makefile
 
 `make` starts the services from scratch ( fetches the artifacts as well ) <br>
 
 `make clean` stops and removes services and data<br>
+
+###Directories
+1. './srv/deployments/', check  to see if the artifact was deployed or not
+2. './srv/log/', contains wildfly's 'server.log(s)'
+3. './srv/media/', mediafiles are stored here
+4. './srv/releases/', the artifact (ear-file) is stored here
+
 
 For other available actions, please see the Makefile
 
