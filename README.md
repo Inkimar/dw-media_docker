@@ -14,6 +14,7 @@ NB 2: For testing , 2 files that post images to the server
 `make clean` stops and removes services and data<br>
 
 ###Directories
+
 1. './srv/deployments/', check  to see if the artifact was deployed or not
 2. './srv/log/', contains wildfly's 'server.log(s)'
 3. './srv/media/', mediafiles are stored here
