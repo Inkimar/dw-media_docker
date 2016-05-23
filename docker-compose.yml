@@ -5,15 +5,6 @@ fs_db.media:
     - ./mysql_media-shr:/shr:z
     - ./mysql_media-autoload:/docker-entrypoint-initdb.d:ro
     - ./mysql_media-conf.d:/etc/mysql/conf.d:z
-
-fs_ws:
-  image: tianon/true
-  volumes:
-    - ./nginx-html:/usr/share/nginx/html:z
-    - ./nginx-conf:/etc/nginx/conf.d:z
-    - ./nginx-certs:/etc/nginx/ssl:z
-    - ./nginx-logs:/etc/nginx/logs:z
-
 fs_as:
   image: tianon/true
   volumes:
@@ -30,8 +21,8 @@ db.media:
     - MYSQL_DATABASE=media
     - MYSQL_USER=mediaserver
     - MYSQL_PASSWORD=mediaserver
-  ports:
-   - "13306:3306"
+  #ports:
+  # - "13306:3306"
   volumes_from:
     - fs_db.media
 
@@ -40,19 +31,10 @@ app:
   ports:
    - "18080:8080"
    - "19990:9990"
+  environment:
+   - VIRTUAL_HOST=api.nrm.se
+   - VIRTUAL_PORT=8080
   volumes_from:
     - fs_as
   links:
     - db.media:dbmedia
-
-web:
-  image: nginx
-  environment:
-   - VIRTUAL_HOST=api.nrm.se
-   - VIRTUAL_PORT=443
-   - VIRTUAL_PROTO=https
-   - CERT_NAME=shared
-  volumes_from:
-    - fs_ws
-  links:
-    - app
