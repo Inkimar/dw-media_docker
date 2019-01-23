@@ -1,7 +1,8 @@
 BASE = https://github.com/DINA-Web/mediaserver-module/releases/download
-VERSION = v0.4
+#VERSION=v0.1
+include .env
 
-all: init build db up
+# all: init build db up
 # all: init db build up
 
 init:
@@ -14,8 +15,8 @@ db:
 	@echo "Waiting for db to start"
 	sleep 10
 
-build:
-	docker-compose build
+#build:
+#	docker-compose build
 
 up: db
 	docker-compose up -d
@@ -28,6 +29,9 @@ clean: stop rm
 
 stop:
 	docker-compose stop
+
+build: 
+	docker build -t vegadare/mediaserver:${VERSION} ./wildfly-custom/
 rm:
 	docker-compose rm -vf
 	rm -f srv/deployments/mediaserver.ear
