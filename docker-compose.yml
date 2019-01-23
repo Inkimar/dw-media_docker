@@ -1,40 +1,37 @@
-fs_db.media:
-  image: tianon/true
-  volumes:
-    - ./mysql_media-datadir:/var/lib/mysql:z
-    - ./mysql_media-shr:/shr:z
-    - ./mysql_media-autoload:/docker-entrypoint-initdb.d:ro
-    - ./mysql_media-conf.d:/etc/mysql/conf.d:z
-fs_as:
-  image: tianon/true
-  volumes:
-    - ./srv/releases:/opt/jboss/wildfly/releases
-    - ./srv/log:/opt/jboss/wildfly/standalone/log
-    - ./srv/deployments:/opt/jboss/wildfly/standalone/deployments
-    - ./srv/media:/opt/data/media
+version: '3.3'
 
-db.media:
-  image: mysql:5.5
-  environment:
-    - TZ=Europe/Stockholm
-    - MYSQL_ROOT_PASSWORD=supersecret
-    - MYSQL_DATABASE=media
-    - MYSQL_USER=mediaserver
-    - MYSQL_PASSWORD=mediaserver
-  #ports:
-  # - "13306:3306"
-  volumes_from:
-    - fs_db.media
+services:   
+  
+  app:
+    image: vegadare/mediaserver:${VERSION}
+    ports:
+     - "18080:8080"
+     - "19990:9990"
+    environment:
+     - VIRTUAL_HOST=api.nrm.se
+     - VIRTUAL_PORT=8080
+    volumes:
+     - ./srv/releases:/opt/jboss/wildfly/releases
+     - ./srv/log:/opt/jboss/wildfly/standalone/log
+     - ./srv/deployments:/opt/jboss/wildfly/standalone/deployments
+     - ./srv/media:/opt/data/media
+  db.media:
+    image: mysql:5.5
+    environment:
+     - TZ=Europe/Stockholm
+     - MYSQL_ROOT_PASSWORD=supersecret
+     - MYSQL_DATABASE=media
+     - MYSQL_USER=mediaserver
+     - MYSQL_PASSWORD=mediaserver
+    volumes:
+     - ./mysql_media-datadir:/var/lib/mysql:z
+     - ./mysql_media-shr:/shr:z
+     - ./mysql_media-autoload:/docker-entrypoint-initdb.d:ro
+     - ./mysql_media-conf.d:/etc/mysql/conf.d:z
+     
 
-app:
-  build: ./wildfly-custom
-  ports:
-   - "18080:8080"
-   - "19990:9990"
-  environment:
-   - VIRTUAL_HOST=api.nrm.se
-   - VIRTUAL_PORT=8080
-  volumes_from:
-    - fs_as
-  links:
-    - db.media:dbmedia
+# running with external proxy
+networks:
+  default:
+    external:
+      name:  proxy-docker_default
