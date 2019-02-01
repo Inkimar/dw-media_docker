@@ -9,10 +9,16 @@ mysql_media-datadir/**
 
 # logs 
 srv/log/server*
+
 #
 srv/media/[0-9]*
 srv/media/[a-f]*
 
+#
+srv/deployments/mediaserver.ear.deployed
+srv/releases/media.dump.sql
+
+# remains
 *~
 
 # Package Files #
