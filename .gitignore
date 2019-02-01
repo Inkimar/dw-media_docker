@@ -7,8 +7,8 @@ mysql-datadir
 mysql_media-autoload/**
 mysql_media-datadir/**
 
-# artifact
-srv/**
+# logs 
+srv/log/server*
 
 *~
 *.class
