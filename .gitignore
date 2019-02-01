@@ -9,10 +9,11 @@ mysql_media-datadir/**
 
 # logs 
 srv/log/server*
+#
+srv/media/[0-9]*
+srv/media/[a-f]*
 
 *~
-*.class
-[0-9]*
 
 # Package Files #
 *.war
