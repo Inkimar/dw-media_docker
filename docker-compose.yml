@@ -5,6 +5,7 @@ services:
   app:
     #image: vegadare/mediaserver:${VERSION}
     build: ./wildfly-custom
+    container_name: mediaserver
     ports:
      - "18080:8080"
      - "19990:9990"
@@ -21,6 +22,7 @@ services:
 
   db.media:
     image: mysql:5.5
+    container_name: dbmediaserver
     environment:
      - TZ=Europe/Stockholm
      - MYSQL_ROOT_PASSWORD=supersecret
@@ -28,10 +30,10 @@ services:
      - MYSQL_USER=mediaserver
      - MYSQL_PASSWORD=mediaserver
     volumes:
-     - ./mysql_media-datadir:/var/lib/mysql:z
-     - ./mysql_media-shr:/shr:z
-     - ./mysql_media-autoload:/docker-entrypoint-initdb.d:ro
-     - ./mysql_media-conf.d:/etc/mysql/conf.d:z
+     - ./db/mysql_media-datadir:/var/lib/mysql:z
+     - ./db/mysql_media-shr:/shr:z
+     - ./db/mysql_media-autoload:/docker-entrypoint-initdb.d:ro
+     - ./db/mysql_media-conf.d:/etc/mysql/conf.d:z
      
 
 # running with external proxy
