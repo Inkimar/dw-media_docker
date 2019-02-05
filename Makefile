@@ -1,14 +1,8 @@
-BASE = https://github.com/DINA-Web/mediaserver-module/releases/download
-#VERSION=v0.1
-include .env
-
-# all: init build db up
 # all: init db build up
 
 init:
 	@echo "Pulling the DINA mediaserver-module release"
-	wget $(BASE)/$(VERSION)/mediaserver-ear.ear -O srv/deployments/mediaserver.ear
-	wget $(BASE)/$(VERSION)/media.dump.sql -O mysql-autoload/media.dump.sql
+	wget https://archive.org/download/mediaserver/mediaserver.ear -O srv/releases/mediaserver.ear
 
 db:
 	docker-compose up -d db.media
@@ -21,20 +15,19 @@ db:
 up: db
 	docker-compose up -d
 
-demo:
-	@echo "Test to upload images to server using curl ( remember to add 'api.nrm.se' to /etc/hosts)"
-	cd testing; ./post-3-images.sh
+demo-https:
+	cd testing; ./post-SSL-1-image.sh
 
 clean: stop rm
 
 stop:
 	docker-compose stop
 
-build: 
-	docker build -t vegadare/mediaserver:${VERSION} ./wildfly-custom/
+#build: 
+#	docker build -t vegadare/mediaserver:${VERSION} ./wildfly-custom/
+
 rm:
 	docker-compose rm -vf
 	rm -f srv/deployments/mediaserver.ear
 	rm -f srv/deployments/mediaserver.ear.deployed
 	rm -f srv/deployments/mediaserver.ear.failed
-	rm -f mysql-autoload/media.dump.sql
