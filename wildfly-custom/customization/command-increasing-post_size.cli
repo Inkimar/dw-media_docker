@@ -1,2 +1,2 @@
-# saving the statement here
+# saving the 'max-post-size' statement here (25485760kb is ca 25MB)
 /subsystem=undertow/server=default-server/http-listener=default/:write-attribute(name=max-post-size,value=25485760)
