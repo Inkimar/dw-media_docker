@@ -1,14 +1,6 @@
-#directories created by mysql
-mysql-autoload/media.dump.sql
-mysql-datadir
-mysql-shr
-mysql-conf.d
-mysql-datadir
-mysql_media-autoload/**
-mysql_media-datadir/**
-
 # logs 
 srv/log/server*
+*.log
 
 #
 srv/media/[0-9]*
@@ -17,6 +9,12 @@ srv/media/[a-f]*
 #
 srv/deployments/mediaserver.ear.deployed
 srv/releases/media.dump.sql
+srv/deployments/mysql-connector*
+
+# db
+db/mysql_media-datadir/*.pid
+db/mysql_media-datadir/ib*
+
 
 # remains
 *~
