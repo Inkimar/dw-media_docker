@@ -3,8 +3,7 @@ version: '3.3'
 services:   
   
   app:
-    #image: vegadare/mediaserver:${VERSION}
-    build: ./wildfly-custom
+    image: inkimar/vega-server:v2.1
     container_name: mediaserver
     ports:
      - "18080:8080"
@@ -14,11 +13,11 @@ services:
     environment:
      - VIRTUAL_HOST=api.nrm.se
      - VIRTUAL_PORT=8080
-    volumes:
-     - ./srv/releases:/opt/jboss/wildfly/releases
+    volumes: 
      - ./srv/log:/opt/jboss/wildfly/standalone/log
-     - ./srv/deployments:/opt/jboss/wildfly/standalone/deployments
      - ./srv/media:/opt/data/media
+     #- ./srv/releases:/opt/jboss/wildfly/releases
+     #- ./srv/deployments:/opt/jboss/wildfly/standalone/deployments   
 
   db.media:
     image: mysql:5.5
