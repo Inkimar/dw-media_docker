@@ -22,4 +22,4 @@ stop:
 	docker-compose stop
 
 build: 
-	docker build -t inkimar/vega-server:v2.1 ./wildfly-custom/
+	docker build -t inkimar/vega-server:v2.2 ./wildfly-custom/

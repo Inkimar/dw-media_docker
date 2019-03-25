@@ -3,7 +3,7 @@ version: '3.3'
 services:   
   
   app:
-    image: inkimar/vega-server:v2.1
+    image: inkimar/vega-server:v2.2
     container_name: mediaserver
     ports:
      - "18080:8080"
