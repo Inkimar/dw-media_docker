@@ -11,6 +11,7 @@ services:
     links:
     - db.media:dbmedia
     environment:
+     - "JAVA_OPTS= -Xmx1g -Xms128m -Xss256k -Djava.awt.headless=true"
      - VIRTUAL_HOST=api.nrm.se
      - VIRTUAL_PORT=8080
     volumes: 
