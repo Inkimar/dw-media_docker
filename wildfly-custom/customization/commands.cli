@@ -1,5 +1,5 @@
 batch
-/subsystem=undertow/server=default-server/http-listener=default/:write-attribute(name=max-post-size,value=150000000)
+/subsystem=undertow/server=default-server/http-listener=default/:write-attribute(name=max-post-size,value=950000000)
 
 deploy customization/mysql-connector-java-5.1.38-bin.jar
 
