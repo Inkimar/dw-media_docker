@@ -15,11 +15,11 @@ server: database
 up: database
 	docker-compose up -d
 
-demo-https:
+test-https:
 	cd testing; ./post-SSL-1-image.sh
 
 stop:
 	docker-compose stop
 
 build: 
-	docker build -t inkimar/vega-server:v2.2 ./wildfly-custom/
+	docker build -t inkimar/vega-server:v2.3 ./wildfly-custom/
