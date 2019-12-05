@@ -5,6 +5,9 @@ WORKDIR /opt/jboss/wildfly
 ADD modules /opt/jboss/wildfly/modules/
 ADD customization /opt/jboss/wildfly/customization/
 
+# standalone.conf increased Java-Heap size
+ADD standalone.conf /opt/jboss/wildfly/bin
+
 USER root
 RUN chmod +x /opt/jboss/wildfly/customization/execute.sh
 RUN /opt/jboss/wildfly/customization/execute.sh
