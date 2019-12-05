@@ -1,5 +1,5 @@
 batch
-/subsystem=undertow/server=default-server/http-listener=default/:write-attribute(name=max-post-size,value=950000000)
+/subsystem=undertow/server=default-server/http-listener=default/:write-attribute(name=max-post-size,value=4200000000)
 
 deploy customization/mysql-connector-java-5.1.38-bin.jar
 
@@ -7,7 +7,7 @@ data-source add --name=MediaDS \
 	--jndi-name=java:/MediaDS \
 	--driver-name=mysql-connector-java-5.1.38-bin.jar_com.mysql.jdbc.Driver_5_1 \
 	--connection-url=jdbc:mysql://dbmedia:3306/media?useUnicode=true&amp;characterEncoding=UTF-8 \
-  --user-name=mediaserver \ 
+    --user-name=mediaserver \ 
 	--password=mediaserver \
 	--check-valid-connection-sql="SELECT 1" \
 	--background-validation=true \
