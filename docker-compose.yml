@@ -3,7 +3,8 @@ version: '3.3'
 services:   
   
   app:
-    image: inkimar/vega-server:v2.2
+    #image: inkimar/vega-server:v2.2
+    image: inkimar/vega-server:v3.1
     container_name: mediaserver
     ports:
      - "18080:8080"
@@ -11,8 +12,9 @@ services:
     links:
     - db.media:dbmedia
     environment:
-     - "JAVA_OPTS= -Xmx1g -Xms128m -Xss256k -Djava.awt.headless=true"
-     - VIRTUAL_HOST=api.nrm.se
+     #- "JAVA_OPTS= -Xms1024M -Xmx4096M -XX:MaxHeapSize=4096M -Djava.net.preferIPv4Stack=true"
+     #- VIRTUAL_HOST=api.nrm.se
+     - VIRTUAL_HOST=media.nrm.se
      - VIRTUAL_PORT=8080
     volumes: 
      - ./srv/log:/opt/jboss/wildfly/standalone/log
@@ -23,6 +25,8 @@ services:
   db.media:
     image: mysql:5.5
     container_name: dbmediaserver
+    ports:
+     - "3306:3306" #for development
     environment:
      - TZ=Europe/Stockholm
      - MYSQL_ROOT_PASSWORD=supersecret
