@@ -2,9 +2,9 @@
 
 .PHONY: all
 
-init:
-	@echo "Pulling the DINA mediaserver-module release"
-	wget https://archive.org/download/mediaserver/mediaserver.ear -O srv/releases/mediaserver.ear
+
+up: database
+	docker-compose up -d app 
 
 database:
 	docker-compose up -d db.media
@@ -12,14 +12,15 @@ database:
 server: database
 	docker-compose up -d app
 
-up: database
-	docker-compose up -d
-
 test-https:
 	cd testing; ./post-SSL-1-image.sh
 
 stop:
 	docker-compose stop
 
+init:
+	@echo "Pulling the DINA mediaserver-module release"
+	wget https://archive.org/download/mediaserver/mediaserver.ear -O srv/releases/mediaserver.ear
+
 build: 
-	docker build -t inkimar/vega-server:v2.3 ./wildfly-custom/
+	docker build -t inkimar/vega-server:v3.1 ./wildfly-custom/
